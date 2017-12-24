@@ -6,7 +6,6 @@ session_start();
 <title>signOut</title>
 </head>
 <body>
-<header> Sign Out Successful! <br> </header>
 
 <?php
 session_unset();
@@ -14,9 +13,9 @@ session_destroy();
 
 ?>
 
-<font size='5'>
-<a href="sign.html" class="btn btn-primary">Click Here</a>
-</font>
-
+<script type ='text/javascript'>
+	alert("Sign Out Successful");
+	window.location.replace('https://schedularity.000webhostapp.com/index.html');
+</script>
 </body>
 </html>

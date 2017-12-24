@@ -38,12 +38,15 @@ if ($result->num_rows > 0) {
 }
 
 if ($f == 'User Found') {
-	echo $f;
-	print "<br> <font size='5'>
-<a href='managerSchedule.php' class='btn btn-primary'>Click Here</a>
-</font>";
+	echo "<script type ='text/javascript'>
+	alert('User Found');
+	window.location.replace('https://schedularity.000webhostapp.com/managerSchedule.php');
+	</script>";
 } else {
-	echo "User Not Found";
+	echo "<script type ='text/javascript'>
+	alert('User Not Found');
+	window.location.replace('https://schedularity.000webhostapp.com/signInManagerForm.html');
+	</script>";
 }
 
 mysqli_close($link);

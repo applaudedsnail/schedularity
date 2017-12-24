@@ -52,12 +52,11 @@ tr:nth-child(even) {
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </button>
-		      <a class="navbar-brand" href="index.html">Home</a>
+            <a class = "navbar-brand" href="employee.html">Add Schedule</a>
 		    </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li><a href="employee.html">Add Schedule</a></li>
             <li><a href="signOut.php">Sign Out</a></li>
           </ul>
 
@@ -112,18 +111,54 @@ echo "<th>Start Time</th>";
 echo "<th>End Time</th>";
 echo "</tr>";
 
+//Iterates through all the schedules the emplyoee submitted and makes a table for them
 for ($x = 0; $x < $i; $x++) {
 	echo "<tr>";
+	//Makes a cloumn for their name
 	echo "<td>" . $name . "</td>";
+	//Makes a column for the date they are working
 	echo "<td>" . $month[$x] . "/" . $day[$x] . "</td>";
+	//Makes a column for the time they are working
+	//Checks to see if the time is before 10 mins because if it is then it adds a 0 before the minute
 	if ($min[$x] < 10) {
-		echo "<td>" . $hour[$x] . ":0" . $min[$x] . "</td>";
+		//Checks to see whether the time is am or pm and formats the time into 12 hour loop
+		if ($hour[$x] < 12) {
+			$temp = $hour[$x] % 12;
+			echo "<td>" . $temp . ":0" . $min[$x] . " am</td>";
+		} else {
+			$temp = $hour[$x] % 12;
+			echo "<td>" . $temp . ":0" . $min[$x] . " pm</td>";
+		}
 	} else {
-		echo "<td>" . $hour[$x] . ":" . $min[$x] . "</td>";
-	}if ($emin[$x] < 10) {
-		echo "<td>" . $ehour[$x] . ":0" . $emin[$x] . "</td>";
+		//Checks to see whether the time is am or pm and formats the time into 12 hour loop
+		if ($hour[$x] < 12) {
+			$temp = $hour[$x] % 12;
+			echo "<td>" . $temp . ":" . $hour[$x] . " am</td>";
+		} else {
+			$temp = $hour[$x] % 12;
+			echo "<td>" . $temp . ":" . $hour[$x] . " pm</td>";
+		}
+	}
+	//Makes a column for the end time
+	//Checks to see if the end time is before 10 mins because if it is then it adds a 0 before the minute
+	if ($emin[$x] < 10) {
+		//Checks to see whether the time is am or pm and formats the time into 12 hour loop
+		if ($ehour[$x] < 12) {
+			$temp = $ehour[$x] % 12;
+			echo "<td>" . $temp . ":0" . $emin[$x] . " am</td>";
+		} else {
+			$temp = $ehour[$x] % 12;
+			echo "<td>" . $temp . ":0" . $emin[$x] . " pm</td>";
+		}
 	} else {
-		echo "<td>" . $ehour[$x] . ":" . $emin[$x] . "</td>";
+		//Checks to see whether the time is am or pm and formats the time into 12 hour loop
+		if ($ehour[$x] < 12) {
+			$temp = $ehour[$x] % 12;
+			echo "<td>" . $temp . ":" . $emin[$x] . " am</td>";
+		} else {
+			$temp = $ehour[$x] % 12;
+			echo "<td>" . $temp . ":" . $emin[$x] . " pm</td>";
+		}
 	}
 	echo "</tr>";
 }
@@ -134,7 +169,7 @@ mysqli_close($link);
 
 ?>
 
-
+	<script src =
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

@@ -38,8 +38,8 @@ if ($result->num_rows > 0) {
 }
 
 if ($f == 'User Found') {
-    echo $f;
-    echo "<script type ='text/javascript'>
+	echo "<script type ='text/javascript'>
+    alert('User Found');
 	window.location.replace('https://schedularity.000webhostapp.com/employeeSchedule.php');
 	</script>";
 } else {

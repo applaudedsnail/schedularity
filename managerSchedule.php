@@ -52,12 +52,11 @@ tr:nth-child(even) {
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </button>
-		      <a class="navbar-brand" href="../../#welcome">Home</a>
+		      <a class="navbar-brand" href="manager.html">Add Shift</a>
 		    </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-          <li><a href="manager.html">Add Shift</a></li>
 
             <li><a href="signOut.php">Sign Out</a></li>
           </ul>
@@ -126,7 +125,7 @@ if ($result->num_rows > 0) {
 
 		$mTest = $month[$i];
 		$dTest = $day[$i];
-		
+
 		echo "This is mTest: $mTest <br>";
 		echo "This is dTest: $dTest <br>";
 
