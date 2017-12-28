@@ -46,12 +46,6 @@ tr:nth-child(even) {
 		    <div class="container-fluid">
 		    <!-- Brand and toggle get grouped for better mobile display -->
 		    <div class="navbar-header">
-		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-		        <span class="sr-only">Toggle navigation</span>
-		        <span class="icon-bar"></span>
-		        <span class="icon-bar"></span>
-		        <span class="icon-bar"></span>
-		      </button>
 		      <a class="navbar-brand" href="manager.html">Add Shift</a>
 		    </div>
 
@@ -68,7 +62,7 @@ tr:nth-child(even) {
 	<br>
 
   <?php
-
+include "employee.inc";
 define('DB_NAME', 'id4019241_users');
 define('DB_USER', 'id4019241_jesus');
 define('DB_PASSWORD', 'jesus242');
@@ -110,6 +104,8 @@ $sql2 = "SELECT avail
 
 $stmt = $link->prepare($sql2);
 
+$myEmployee = array();
+
 //Stores information of shift
 if ($result->num_rows > 0) {
 	while ($row = $result->fetch_assoc()) {
@@ -121,26 +117,37 @@ if ($result->num_rows > 0) {
 		$ehour[$i] = $row["ehour"];
 		$emin[$i] = $row["emin"];
 		$covered[$i] = $row["covered"];
-		echo "This is user: $user[$i] <br>";
 
-		$mTest = $month[$i];
-		$dTest = $day[$i];
+		$myEmployee[$i] = new employee($user[$i], $day[$i], $month[$i], $hour[$i], $min[$i], $ehour[$i], $emin[$i], $covered[$i]);
 
-		echo "This is mTest: $mTest <br>";
-		echo "This is dTest: $dTest <br>";
+		/*
+			echo "This is user: $user[$i] <br>";
 
-		$stmt->bind_param("ii", $mTest, $dTest);
+			$mTest = $month[$i];
+			$dTest = $day[$i];
 
-		$stmt->execute();
-		$stmt->bind_result($res);
+			echo "This is mTest: $mTest <br>";
+			echo "This is dTest: $dTest <br>";
 
-		$tshift[$i] = $res;
+			$stmt->bind_param("ii", $mTest, $dTest);
 
-		echo "This is: $tshift[$i] <br>";
+			$stmt->execute();
+			$stmt->bind_result($res);
 
+			$tshift[$i] = $res;
+
+			echo "This is: $tshift[$i] <br>";
+		*/
 		$i++;
 	}
 }
+foreach ($myEmployee as $value) {
+	if ($value->day == 6) {
+		echo "Success <br>";
+	}
+
+}
+var_dump($myEmployee);
 
 /*
 
@@ -263,23 +270,60 @@ echo "<th>Start Time</th>";
 echo "<th>End Time</th>";
 echo "</tr>";
 
+//Iterates through all the schedules the emplyoee submitted and makes a table for them
 for ($x = 0; $x < $i; $x++) {
 echo "<tr>";
-echo "<td>" . $user[$x] . "</td>";
+//Makes a cloumn for their name
+echo "<td>" . $name . "</td>";
+//Makes a column for the date they are working
 echo "<td>" . $month[$x] . "/" . $day[$x] . "</td>";
+//Makes a column for the time they are working
+//Checks to see if the time is before 10 mins because if it is then it adds a 0 before the minute
 if ($min[$x] < 10) {
-echo "<td>" . $hour[$x] . ":0" . $min[$x] . "</td>";
+//Checks to see whether the time is am or pm and formats the time into 12 hour loop
+if ($hour[$x] < 12) {
+$temp = $hour[$x] % 12;
+echo "<td>" . $temp . ":0" . $min[$x] . " am</td>";
 } else {
-echo "<td>" . $hour[$x] . ":" . $min[$x] . "</td>";
-}if ($emin[$x] < 10) {
-echo "<td>" . $ehour[$x] . ":0" . $emin[$x] . "</td>";
+$temp = $hour[$x] % 12;
+echo "<td>" . $temp . ":0" . $min[$x] . " pm</td>";
+}
 } else {
-echo "<td>" . $ehour[$x] . ":" . $emin[$x] . "</td>";
+//Checks to see whether the time is am or pm and formats the time into 12 hour loop
+if ($hour[$x] < 12) {
+$temp = $hour[$x] % 12;
+echo "<td>" . $temp . ":" . $hour[$x] . " am</td>";
+} else {
+$temp = $hour[$x] % 12;
+echo "<td>" . $temp . ":" . $hour[$x] . " pm</td>";
+}
+}
+//Makes a column for the end time
+//Checks to see if the end time is before 10 mins because if it is then it adds a 0 before the minute
+if ($emin[$x] < 10) {
+//Checks to see whether the time is am or pm and formats the time into 12 hour loop
+if ($ehour[$x] < 12) {
+$temp = $ehour[$x] % 12;
+echo "<td>" . $temp . ":0" . $emin[$x] . " am</td>";
+} else {
+$temp = $ehour[$x] % 12;
+echo "<td>" . $temp . ":0" . $emin[$x] . " pm</td>";
+}
+} else {
+//Checks to see whether the time is am or pm and formats the time into 12 hour loop
+if ($ehour[$x] < 12) {
+$temp = $ehour[$x] % 12;
+echo "<td>" . $temp . ":" . $emin[$x] . " am</td>";
+} else {
+$temp = $ehour[$x] % 12;
+echo "<td>" . $temp . ":" . $emin[$x] . " pm</td>";
+}
 }
 echo "</tr>";
 }
 
-echo "</table>";*/
+echo "</table>";
+ */
 
 mysqli_close($link);
 

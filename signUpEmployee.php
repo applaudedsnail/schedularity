@@ -14,20 +14,20 @@ define('DB_HOST', 'localhost');
 
 $link = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
-$v1 = $_POST['name'];
-$v2 = $_POST['password'];
-$v3 = $_POST['team'];
+$name = $_POST['name'];
+$password = $_POST['password'];
+$team = $_POST['team'];
 
-
-$sql = $link->query("INSERT INTO employee (name, password, team, assignedHour) VALUES ('$v1', '$v2', '$v3', '0')");
+$sql = $link->query("INSERT INTO employee (name, password, team, assignedHour) VALUES ('$name', '$password', '$team', '0')");
 
 mysqli_close($link);
 
 ?>
 
-<font size='5'>
-<a href="signInEmployeeForm.html" class="btn btn-primary">Click Here</a>
-</font>
+<script type ='text/javascript'>
+	alert('User Not Found');
+	window.location.replace('https://schedularity.000webhostapp.com/signInEmployeeForm.html');
+</script>;
 
 </body>
 </html>

@@ -21,17 +21,17 @@ $sql = "SELECT id, name, password, team FROM employee";
 
 $result = $link->query($sql);
 
-$v1 = $_POST['name'];
-$v2 = $_POST['password'];
-$v3 = $_POST['team'];
+$name = $_POST['name'];
+$password = $_POST['password'];
+$team = $_POST['team'];
 
-$_SESSION["user"] = $v1;
+$_SESSION["user"] = $name;
 
 $f = "";
 
 if ($result->num_rows > 0) {
 	while ($row = $result->fetch_assoc()) {
-		if ($v1 == $row["name"] && $v2 == $row["password"] && $v3 == $row["team"]) {
+		if ($name == $row["name"] && $password == $row["password"] && $team == $row["team"]) {
 			$f = "User Found";
 		}
 	}

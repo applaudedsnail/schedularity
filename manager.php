@@ -8,25 +8,6 @@ session_start();
 <body>
 
 <?php
-/*class Shifts {
-public $month;
-public $day;
-public $hour;
-public $min;
-public $ehour;
-public $emin;
-public $user;
-function Shifts($month, $day, $hour, $min, $ehour, $emin, $user) {
-$this->$month = $month;
-$this->$day = $day;
-$this->$hour = $hour;
-$this->$min = $min;
-$this->$ehour = $ehour;
-$this->$emin = $emin;
-$this->$user = $user;
-}
-}
- */
 
 $month = $_POST['month'];
 $day = $_POST['day'];
@@ -37,12 +18,6 @@ $user = $_SESSION['user'];
 $ehour = $_POST['ehour'];
 $emin = $_POST['emin'];
 $blank = '';
-
-echo "You have submitted as a date: $month / $day <br>";
-echo "You have submitted as a start time: $hour : $min <br>";
-echo "You have submitted as a end time $ehour $emin: $endTime <br>";
-
-//$ava = new Shifts($month, $day, $hour, $min, $ehour, $emin);
 
 define('DB_NAME', 'id4019241_users');
 define('DB_USER', 'id4019241_jesus');
@@ -57,13 +32,11 @@ mysqli_close($link);
 
 ?>
 
-<br>
-<a href='manager.html' class='btn btn-primary'> Submit another schedule? </a>
-<br>
-<br>
-<a href ='managerSchedule.php' class = 'btn btn-primary'> Go to my schedule</a>
-</font>
 
+<script type ='text/javascript'>
+	alert("Availability Submitted");
+	window.location.replace('https://schedularity.000webhostapp.com/managerSchedule.php');
+</script>
 
 </body>
 </html>

@@ -14,19 +14,20 @@ define('DB_HOST', 'localhost');
 
 $link = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
-$v1 = $_POST['name'];
-$v2 = $_POST['password'];
-$v3 = $_POST['team'];
+$name = $_POST['name'];
+$password = $_POST['password'];
+$team = $_POST['team'];
 
-$sql = $link->query("INSERT INTO manager (name, password, team) VALUES ('$v1', '$v2', '$v3')");
+$sql = $link->query("INSERT INTO manager (name, password, team) VALUES ('$name', '$password', '$team')");
 
 mysqli_close($link);
 
 ?>
 
-<font size='5'>
-<a href="signInManagerForm.html" class="btn btn-primary">Click Here</a>
-</font>
+<script type ='text/javascript'>
+	alert('User Not Found');
+	window.location.replace('https://schedularity.000webhostapp.com/signInManagerForm.html');
+</script>;
 
 </body>
 </html>
