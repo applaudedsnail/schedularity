@@ -21,20 +21,17 @@ session_start();
     <![endif]-->
 
     <style>
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
 
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
+.table-responsive tbody tr {
+  cursor: pointer;
 }
-
-tr:nth-child(even) {
-    background-color: #dddddd;
+.table-responsive .table thead tr th {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.table-responsive .table tbody tr td {
+  padding-top: 15px;
+  padding-bottom: 10px;
 }
 </style>
 
@@ -93,14 +90,19 @@ if ($result->num_rows > 0) {
 	}
 }
 
-echo "<table>";
+echo "<div class = 'table-responsive'>";
+
+echo "<table class = 'table table-hover'>";
+echo "<thead>";
 echo "<tr>";
 echo "<th>Name</th>";
 echo "<th>Date</th>";
 echo "<th>Start Time</th>";
 echo "<th>End Time</th>";
+echo "<th>Selected</th>";
 echo "</tr>";
-
+echo "</thead>";
+echo "<tbody>";
 //Iterates through all the schedules the emplyoee submitted and makes a table for them
 for ($x = 0; $x < $i; $x++) {
 	echo "<tr>";
@@ -150,10 +152,13 @@ for ($x = 0; $x < $i; $x++) {
 			echo "<td>" . $temp . ":" . $emin[$x] . " pm</td>";
 		}
 	}
+	
+	echo "<td><input type='radio' name = 'radios' id = $x /> </td>";
 	echo "</tr>";
 }
-
+echo "</tbody>";
 echo "</table>";
+echo "</div>";
 
 mysqli_close($link);
 
@@ -167,6 +172,16 @@ mysqli_close($link);
     <script src="js/bootstrap.min.js"></script>
     <script src="jquery.datetimepicker.full.js"></script>
 
+    <script>
+    	$(document).ready(function(){
+
+    		$('.table tbody tr').click(function(event) {
+    			if (event.target.type !== 'radio') {
+    				$(':radio', this).trigger('click');
+    			}
+    		});
+    	}
+	</script>
 
   </body>
 </html>
